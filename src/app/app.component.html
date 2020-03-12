@@ -1,0 +1,27 @@
+<button *ngIf="!started; else tracks" class="start" (click)="start()">
+    Start AudioContext
+</button>
+<ng-template #tracks>
+    <section>
+        <label>
+            Beat
+            <input type="range" min="0" max="1" step="0.01" [(ngModel)]="beat" />
+        </label>
+        <label>
+            Solo
+            <input type="range" min="0" max="1" step="0.01" [(ngModel)]="solo" />
+        </label>
+        <label>
+            Lead
+            <input type="range" min="0" max="1" step="0.01" [(ngModel)]="lead" />
+        </label>
+        <label>
+            Chords
+            <input type="range" min="0" max="1" step="0.01" [(ngModel)]="chords" />
+        </label>
+    </section>
+    <beat [volume]="beat"></beat>
+    <solo [volume]="solo"></solo>
+    <lead [volume]="lead"></lead>
+    <chords [volume]="chords"></chords>
+</ng-template>

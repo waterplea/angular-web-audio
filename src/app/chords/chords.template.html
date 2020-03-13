@@ -9,18 +9,14 @@
 	</ng-container>
 
 	<ng-container waOscillatorNode type="sawtooth" autoplay [frequency]="note">
-		<ng-container waGainNode gain="0.05">
-			<ng-container waGainNode [gain]="volume">
-				<ng-container waAudioDestinationNode></ng-container>
-			</ng-container>
+		<ng-container waGainNode [gain]="0.05 * volume">
+			<ng-container waAudioDestinationNode></ng-container>
 		</ng-container>
 	</ng-container>
 
-	<ng-container waOscillatorNode autoplay [frequency]="note">
-		<ng-container waGainNode gain="0.05">
-			<ng-container waGainNode [gain]="volume">
-				<ng-container waAudioDestinationNode></ng-container>
-			</ng-container>
+	<ng-container waOscillatorNode autoplay [frequency]="note / 2">
+		<ng-container waGainNode [gain]="0.07 * volume">
+			<ng-container waAudioDestinationNode></ng-container>
 		</ng-container>
 	</ng-container>
 

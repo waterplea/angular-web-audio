@@ -12,7 +12,11 @@ export class AppComponent {
   chords = 1;
   lead = 1;
 
-  start() {
-    this.started = true;
+  get text(): string {
+    return this.started ? 'Stop' : 'Start AudioContext';
+  }
+
+  toggle() {
+    this.started = !this.started;
   }
 }

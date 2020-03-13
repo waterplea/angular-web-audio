@@ -1,0 +1,48 @@
+<!-- Because StackBlitz does not allow assets we have to encode our samples to Base64 -->
+<ng-container *ngIf="reverb | async as reverbBuffer">
+	<ng-container *ngIf="notes$ | async as note">
+		<ng-container waOscillatorNode autoplay frequency="0.2">
+			<ng-container [waOutput]="pan1.pan"></ng-container>
+			<ng-container waGainNode gain="-1">
+				<ng-container [waOutput]="pan2.pan"></ng-container>
+			</ng-container>
+			<ng-container waGainNode gain="19">
+				<ng-container [waOutput]="filter.Q"></ng-container>
+			</ng-container>
+			<ng-container waGainNode gain="1000">
+				<ng-container [waOutput]="filter.frequency"></ng-container>
+			</ng-container>
+		</ng-container>
+
+		<ng-container waOscillatorNode detune="5" type="square" autoplay frequency="830"
+			[frequency]="toFrequency(getModulatedNote(note)) | waAudioParam : 0.3">
+			<ng-container #pan1="AudioNode" waStereoPannerNode>
+				<ng-container #filter="AudioNode" waBiquadFilterNode type="bandpass" Q="20" frequency="2000">
+					<ng-container waGainNode [gain]="volume * 0.04">
+						<ng-container waAudioDestinationNode></ng-container>
+					</ng-container>
+				</ng-container>
+			</ng-container>
+			<ng-container waStereoPannerNode [pan]="-1">
+				<ng-container waGainNode [gain]="volume * 0.02">
+					<ng-container waConvolverNode [buffer]="reverbBuffer">
+						<ng-container waAudioDestinationNode></ng-container>
+					</ng-container>
+				</ng-container>
+			</ng-container>
+		</ng-container>
+		<ng-container waOscillatorNode type="sawtooth" autoplay frequency="1244"
+			[frequency]="toFrequency(note) | waAudioParam : 0.3">
+			<ng-container #pan2="AudioNode" waStereoPannerNode>
+				<ng-container waGainNode [gain]="volume * 0.05">
+					<ng-container waAudioDestinationNode></ng-container>
+				</ng-container>
+			</ng-container>
+			<ng-container waGainNode [gain]="volume * 0.02">
+				<ng-container waConvolverNode [buffer]="reverbBuffer">
+					<ng-container waAudioDestinationNode></ng-container>
+				</ng-container>
+			</ng-container>
+		</ng-container>
+	</ng-container>
+</ng-container>

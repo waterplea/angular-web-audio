@@ -1,0 +1,29 @@
+<!-- Because StackBlitz does not allow assets we have to encode our samples to Base64 -->
+<ng-container *ngIf="reverb | async as reverbBuffer">
+	<ng-container *ngIf="notes$ | async as note">
+		<ng-container waOscillatorNode detune="5" autoplay [frequency]="toFrequency(note)">
+			<ng-container waGainNode [gain]="getVolume(note) + 0.05 | adsr : 0 : 0.1 : 0.02 : 0.5">
+				<ng-container waGainNode [gain]="volume">
+					<ng-container waAudioDestinationNode></ng-container>
+				</ng-container>
+			</ng-container>
+		</ng-container>
+		<ng-container waOscillatorNode type="sawtooth" autoplay [frequency]="toFrequency(note)">
+			<ng-container waGainNode [gain]="getVolume(note) | adsr : 0 : 0.1 : 0.02 : 0.5">
+				<ng-container #feedback="AudioNode" waGainNode gain="0.7">
+					<ng-container waDelayNode delayTime="0.3">
+						<ng-container [waOutput]="feedback"></ng-container>
+					</ng-container>
+					<ng-container waConvolverNode [buffer]="reverbBuffer">
+						<ng-container waGainNode [gain]="volume">
+							<ng-container waAudioDestinationNode></ng-container>
+						</ng-container>
+					</ng-container>
+				</ng-container>
+				<ng-container waGainNode [gain]="volume">
+					<ng-container waAudioDestinationNode></ng-container>
+				</ng-container>
+			</ng-container>
+		</ng-container>
+	</ng-container>
+</ng-container>

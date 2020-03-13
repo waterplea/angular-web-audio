@@ -33,7 +33,7 @@ export class BeatComponent {
 
   readonly kick$ = this.tick$.pipe(map(tick => !(tick % 4)));
 
-  readonly snare$ = this.tick$.pipe(map(tick => !((tick % 4) - 2)));
+  readonly snare$ = this.tick$.pipe(map(tick => !((tick % 4) < 2)));
 
   constructor(
     @Inject(TICK) private readonly tick$: Observable<number>,

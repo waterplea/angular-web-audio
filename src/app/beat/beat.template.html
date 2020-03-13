@@ -2,13 +2,13 @@
     *ngIf="kick$ | async"
     waAudioBufferSourceNode
     autoplay
-    buffer="assets/kick.wav"
+    buffer="https://waterplea.com/Dust.mp3"
 >
     <ng-container waGainNode [gain]="volume">
         <ng-container waAudioDestinationNode></ng-container>
     </ng-container>
 </ng-container>
-<ng-container
+<!-- <ng-container
     *ngIf="snare$ | async"
     waAudioBufferSourceNode
     autoplay
@@ -17,4 +17,4 @@
     <ng-container waGainNode [gain]="volume">
         <ng-container waAudioDestinationNode></ng-container>
     </ng-container>
-</ng-container>
+</ng-container> -->

@@ -1,18 +1,33 @@
-<ng-container *ngIf="notes$ | async as note">
-	<ng-container waOscillatorNode frequency="0.2" autoplay>
-		<ng-container waGainNode gain="10">
-			<ng-container [waOutput]="up.detune"></ng-container>
-		</ng-container>
-		<ng-container waGainNode gain="3000">
-			<ng-container [waOutput]="filter.frequency"></ng-container>
-		</ng-container>
-	</ng-container>
+<details *ngIf="notes$ | async as note">
+  <summary>
+    <ng-content></ng-content>
+  </summary>
+	<fieldset waOscillatorNode frequency="0.2" autoplay>
+		<legend>OscillatorNode</legend>
+		<fieldset waGainNode gain="10">
+			<legend>GainNode gain="10"</legend>
+			<fieldset [waOutput]="up.detune">
+				<legend>Output</legend>
+				Controls second voice detune
+			</fieldset>
+		</fieldset>
+		<fieldset waGainNode gain="3000">
+			<legend>GainNode gain="3000"</legend>
+			<fieldset [waOutput]="filter.frequency">
+				<legend>Output</legend>
+				Controls second voice filter frequency
+			</fieldset>
+		</fieldset>
+	</fieldset>
 
-	<ng-container waOscillatorNode type="sawtooth" autoplay [frequency]="note">
+	<fieldset waOscillatorNode type="sawtooth" autoplay [frequency]="note">
+		<legend>OscillatorNode</legend>
 		<ng-container waGainNode [gain]="0.05 * volume">
-			<ng-container waAudioDestinationNode></ng-container>
+			<fieldset waAudioDestinationNode>
+				<legend>AudioDestinationNode</legend>
+			</fieldset>
 		</ng-container>
-	</ng-container>
+	</fieldset>
 
 	<ng-container waOscillatorNode autoplay [frequency]="note / 2">
 		<ng-container waGainNode [gain]="0.07 * volume">
@@ -20,13 +35,15 @@
 		</ng-container>
 	</ng-container>
 
-	<ng-container #up="AudioNode" waOscillatorNode type="square" autoplay [frequency]="note * 2">
-		<ng-container waGainNode gain="0.1">
-			<ng-container #filter="AudioNode" waBiquadFilterNode type="bandpass" frequency="4000">
-				<ng-container waGainNode [gain]="volume">
-					<ng-container waAudioDestinationNode></ng-container>
-				</ng-container>
+	<fieldset #up="AudioNode" waOscillatorNode type="square" autoplay [frequency]="note * 2">
+		<legend>OscillatorNode</legend>
+		<fieldset #filter="AudioNode" waBiquadFilterNode type="bandpass" frequency="4000">
+			<legend>BiquadFilterNode</legend>
+			<ng-container waGainNode [gain]="0.1 * volume">
+				<fieldset waAudioDestinationNode>
+					<legend>AudioDestinationNode</legend>
+				</fieldset>
 			</ng-container>
-		</ng-container>
-	</ng-container>
-</ng-container>
+		</fieldset>
+	</fieldset>
+</details>

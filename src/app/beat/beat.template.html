@@ -1,21 +1,26 @@
 <!-- Because StackBlitz does not allow assets we have to encode our samples to Base64 -->
-<ng-container *ngIf="kick | async as kickBuffer">
-	<div *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kickBuffer">
-		waAudioBufferSourceNode
-		<ng-container waGainNode [gain]="volume">
-			<div waAudioDestinationNode>
-        waAudioDestinationNode
-      </div>
-		</ng-container>
-	</div>
-</ng-container>
-<ng-container *ngIf="snare | async as snareBuffer">
-	<div *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snareBuffer">
-    waAudioBufferSourceNode
-		<ng-container waGainNode [gain]="volume">
-			<div waAudioDestinationNode>
-        waAudioDestinationNode
-      </div>
-		</ng-container>
-	</div>
-</ng-container>
+<details>
+	<summary>
+		<ng-content></ng-content>
+	</summary>
+	<ng-container *ngIf="kick | async as kickBuffer">
+		<fieldset *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kickBuffer">
+			<legend>AudioBufferSourceNode</legend>
+			<ng-container waGainNode [gain]="volume">
+				<fieldset waAudioDestinationNode>
+					<legend>AudioDestinationNode</legend>
+				</fieldset>
+			</ng-container>
+		</fieldset>
+	</ng-container>
+	<ng-container *ngIf="snare | async as snareBuffer">
+		<fieldset *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snareBuffer">
+			<legend>AudioBufferSourceNode</legend>
+			<ng-container waGainNode [gain]="volume">
+				<fieldset waAudioDestinationNode>
+					<legend>AudioDestinationNode</legend>
+				</fieldset>
+			</ng-container>
+		</fieldset>
+	</ng-container>
+</details>

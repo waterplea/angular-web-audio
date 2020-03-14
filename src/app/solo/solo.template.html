@@ -1,48 +1,83 @@
 <!-- Because StackBlitz does not allow assets we have to encode our samples to Base64 -->
-<ng-container *ngIf="reverb | async as reverbBuffer">
+<details *ngIf="reverb | async as reverbBuffer">
+	<summary>
+		<ng-content></ng-content>
+	</summary>
 	<ng-container *ngIf="notes$ | async as note">
-		<ng-container waOscillatorNode autoplay frequency="0.2">
-			<ng-container [waOutput]="pan1.pan"></ng-container>
-			<ng-container waGainNode gain="-1">
-				<ng-container [waOutput]="pan2.pan"></ng-container>
-			</ng-container>
-			<ng-container waGainNode gain="19">
-				<ng-container [waOutput]="filter.Q"></ng-container>
-			</ng-container>
-			<ng-container waGainNode gain="1000">
-				<ng-container [waOutput]="filter.frequency"></ng-container>
-			</ng-container>
-		</ng-container>
+		<fieldset waOscillatorNode autoplay frequency="0.2">
+			<legend>OscillatorNode</legend>
+			<fieldset [waOutput]="pan1.pan">
+				<legend>Output</legend>
+				Controls first voice panning
+			</fieldset>
+			<fieldset waGainNode gain="-1">
+				<legend>GainNode gain="-1"</legend>
+				<fieldset [waOutput]="pan2.pan">
+					<legend>Output</legend>
+					Controls second voice panning
+				</fieldset>
+			</fieldset>
+			<fieldset waGainNode gain="19">
+				<legend>GainNode gain="19"</legend>
+				<fieldset [waOutput]="filter.Q">
+					<legend>Output</legend>
+					Controls filter slope
+				</fieldset>
+			</fieldset>
+			<fieldset waGainNode gain="1000">
+				<legend>GainNode gain="1000"</legend>
+				<fieldset [waOutput]="filter.frequency">
+					<legend>Output</legend>
+					Controls filter frequency
+				</fieldset>
+			</fieldset>
+		</fieldset>
 
-		<ng-container waOscillatorNode detune="5" type="square" autoplay frequency="830"
+		<fieldset waOscillatorNode detune="5" type="square" autoplay frequency="830"
 			[frequency]="toFrequency(getModulatedNote(note)) | waAudioParam : 0.3">
-			<ng-container #pan1="AudioNode" waStereoPannerNode>
-				<ng-container #filter="AudioNode" waBiquadFilterNode type="bandpass" Q="20" frequency="2000">
+			<legend>OscillatorNode</legend>
+			<fieldset #pan1="AudioNode" waStereoPannerNode>
+				<legend>StereoPannerNode</legend>
+				<fieldset #filter="AudioNode" waBiquadFilterNode type="bandpass" Q="20" frequency="2000">
+					<legend>BiquadFilterNode</legend>
 					<ng-container waGainNode [gain]="volume * 0.04">
-						<ng-container waAudioDestinationNode></ng-container>
+						<fieldset waAudioDestinationNode>
+							<legend>AudioDestinationNode</legend>
+						</fieldset>
 					</ng-container>
-				</ng-container>
-			</ng-container>
-			<ng-container waStereoPannerNode [pan]="-1">
+				</fieldset>
+			</fieldset>
+			<fieldset waStereoPannerNode [pan]="-1">
+				<legend>StereoPannerNode</legend>
 				<ng-container waGainNode [gain]="volume * 0.02">
-					<ng-container waConvolverNode [buffer]="reverbBuffer">
-						<ng-container waAudioDestinationNode></ng-container>
-					</ng-container>
+					<fieldset waConvolverNode [buffer]="reverbBuffer">
+						<legend>ConvolverNode</legend>
+						<fieldset waAudioDestinationNode>
+							<legend>AudioDestinationNode</legend>
+						</fieldset>
+					</fieldset>
 				</ng-container>
-			</ng-container>
-		</ng-container>
-		<ng-container waOscillatorNode type="sawtooth" autoplay frequency="1244"
+			</fieldset>
+		</fieldset>
+		<fieldset waOscillatorNode type="sawtooth" autoplay frequency="1244"
 			[frequency]="toFrequency(note) | waAudioParam : 0.3">
-			<ng-container #pan2="AudioNode" waStereoPannerNode>
+			<legend>OscillatorNode</legend>
+			<fieldset #pan2="AudioNode" waStereoPannerNode>
+				<legend>StereoPannerNode</legend>
 				<ng-container waGainNode [gain]="volume * 0.05">
-					<ng-container waAudioDestinationNode></ng-container>
+					<fieldset waAudioDestinationNode>
+						<legend>AudioDestinationNode</legend>
+					</fieldset>
 				</ng-container>
-			</ng-container>
+			</fieldset>
 			<ng-container waGainNode [gain]="volume * 0.02">
-				<ng-container waConvolverNode [buffer]="reverbBuffer">
-					<ng-container waAudioDestinationNode></ng-container>
-				</ng-container>
+				<fieldset waConvolverNode [buffer]="reverbBuffer">
+					<legend>ConvolverNode</legend>
+					<fieldset waAudioDestinationNode>
+						<legend>AudioDestinationNode</legend>
+					</fieldset>
+				</fieldset>
 			</ng-container>
-		</ng-container>
+		</fieldset>
 	</ng-container>
-</ng-container>
+</details>

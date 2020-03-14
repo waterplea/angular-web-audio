@@ -1,33 +1,76 @@
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+beat,
+chords,
+lead,
+solo {
+  display: block;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+}
 
-*[ng-reflect--waoutput] {
-    background: thistle;
+summary {
+  outline: none;
+}
+
+h1 {  
+  display: inline;
+  vertical-align: middle;
+}
+
+input {
+  width: 100%;
+}
+
+fieldset {
+  margin-top: 1em;
+  border: none;
+  border-radius: 4px;
+}
+
+legend {
+  background: white;
+  box-shadow: 0 0 2px;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+*[ng-reflect-wa-output] {
+  background: thistle;
+}
+
+*[waAudioBufferSourceNode] {
+  background: salmon;
 }
 
 *[waGainNode] {
-    background: pink;
+  background: pink;
 }
 
 *[waDelayNode] {
-    background: lightgreen;
+  background: lightgreen;
+}
+
+*[waOscillatorNode] {
+  background: cornflowerblue;
 }
 
 *[waStereoPannerNode] {
-    background: skyblue;
+  background: skyblue;
 }
 
 *[waAudioDestinationNode] {
-    background: khaki;
-}
-
-*[waWaveShaperNode] {
-    background: salmon;
+  background: khaki;
 }
 
 *[waBiquadFilterNode] {
-    background: gold;
+  background: yellowgreen;
 }
 
 *[waConvolverNode] {
-    background: aquamarine;
+  background: aquamarine;
 }

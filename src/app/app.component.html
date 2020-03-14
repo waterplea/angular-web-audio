@@ -2,30 +2,30 @@
 <section *ngIf="started">
 	<div>
 		<label>
-        <input type="range" min="0" max="1" step="0.01" [(ngModel)]="beat" />
-        Beat
-      </label>
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="beat" />
+      Beat
+    </label>
+		<beat [volume]="beat"></beat>
 	</div>
 	<div>
 		<label>
-        <input type="range" min="0" max="1" step="0.01" [(ngModel)]="solo" />
-        Solo
-      </label>
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="solo" />
+      Solo
+    </label>
 	</div>
 	<div>
 		<label>
-        <input type="range" min="0" max="1" step="0.01" [(ngModel)]="lead" />
-        Lead
-      </label>
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="lead" />
+      Lead
+    </label>
 	</div>
 	<div>
 		<label>
-        <input type="range" min="0" max="1" step="0.01" [(ngModel)]="chords" />
-        Chords
-      </label>
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="chords" />
+      Chords
+    </label>
 	</div>
-  
-	<beat [volume]="beat"></beat>
+
 	<solo [volume]="solo"></solo>
 	<lead [volume]="lead"></lead>
 	<chords [volume]="chords"></chords>

@@ -1,0 +1,33 @@
+
+
+*[ng-reflect--waoutput] {
+    background: thistle;
+}
+
+*[waGainNode] {
+    background: pink;
+}
+
+*[waDelayNode] {
+    background: lightgreen;
+}
+
+*[waStereoPannerNode] {
+    background: skyblue;
+}
+
+*[waAudioDestinationNode] {
+    background: khaki;
+}
+
+*[waWaveShaperNode] {
+    background: salmon;
+}
+
+*[waBiquadFilterNode] {
+    background: gold;
+}
+
+*[waConvolverNode] {
+    background: aquamarine;
+}

@@ -1,15 +1,21 @@
 <!-- Because StackBlitz does not allow assets we have to encode our samples to Base64 -->
 <ng-container *ngIf="kick | async as kickBuffer">
-	<ng-container *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kickBuffer">
+	<div *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kickBuffer">
+		waAudioBufferSourceNode
 		<ng-container waGainNode [gain]="volume">
-			<ng-container waAudioDestinationNode></ng-container>
+			<div waAudioDestinationNode>
+        waAudioDestinationNode
+      </div>
 		</ng-container>
-	</ng-container>
+	</div>
 </ng-container>
 <ng-container *ngIf="snare | async as snareBuffer">
-	<ng-container *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snareBuffer">
+	<div *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snareBuffer">
+    waAudioBufferSourceNode
 		<ng-container waGainNode [gain]="volume">
-			<ng-container waAudioDestinationNode></ng-container>
+			<div waAudioDestinationNode>
+        waAudioDestinationNode
+      </div>
 		</ng-container>
-	</ng-container>
+	</div>
 </ng-container>

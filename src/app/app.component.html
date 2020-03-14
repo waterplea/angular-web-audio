@@ -1,5 +1,12 @@
 <button class="start" (click)="toggle()">{{text}}</button>
 <section *ngIf="started">
+	<blockquote>
+		<strong>Click tracks to expand inner structure</strong>
+    <em>
+		Only important nodes are shown. Some technical
+		nodes are left out (such as GainNode for volume control).
+    </em>
+	</blockquote>
 	<beat [volume]="beat">
 		<label>
       <h1>Beat</h1>

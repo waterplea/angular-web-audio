@@ -3,24 +3,20 @@
 	<summary>
 		<ng-content></ng-content>
 	</summary>
-	<ng-container *ngIf="kick | async as kickBuffer">
-		<fieldset *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kickBuffer">
-			<legend>AudioBufferSourceNode</legend>
-			<ng-container waGainNode [gain]="volume">
-				<fieldset waAudioDestinationNode>
-					<legend>AudioDestinationNode</legend>
-				</fieldset>
-			</ng-container>
-		</fieldset>
-	</ng-container>
-	<ng-container *ngIf="snare | async as snareBuffer">
-		<fieldset *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snareBuffer">
-			<legend>AudioBufferSourceNode</legend>
-			<ng-container waGainNode [gain]="volume">
-				<fieldset waAudioDestinationNode>
-					<legend>AudioDestinationNode</legend>
-				</fieldset>
-			</ng-container>
-		</fieldset>
-	</ng-container>
+	<fieldset *ngIf="kick$ | async" waAudioBufferSourceNode autoplay [buffer]="kick | async">
+		<legend>AudioBufferSourceNode</legend>
+		<ng-container waGainNode [gain]="volume">
+			<fieldset waAudioDestinationNode>
+				<legend>AudioDestinationNode</legend>
+			</fieldset>
+		</ng-container>
+	</fieldset>
+	<fieldset *ngIf="snare$ | async" waAudioBufferSourceNode autoplay [buffer]="snare | async">
+		<legend>AudioBufferSourceNode</legend>
+		<ng-container waGainNode [gain]="volume">
+			<fieldset waAudioDestinationNode>
+				<legend>AudioDestinationNode</legend>
+			</fieldset>
+		</ng-container>
+	</fieldset>
 </details>

@@ -31,7 +31,7 @@ export const SNARE_BUFFER = new InjectionToken<Promise<AudioBuffer>>("Snare", {
 export class BeatComponent {
   @Input() volume = 1;
 
-  readonly kick$ = this.tick$.pipe(map(tick => !(tick % 4)));
+  readonly kick$ = this.tick$.pipe(map(tick => tick % 4 < 2));
 
   readonly snare$ = this.tick$.pipe(map(tick => tick % 4 >= 2));
 
